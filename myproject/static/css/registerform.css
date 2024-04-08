@@ -1,0 +1,45 @@
+ body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f6f8fa; /* GitHub background color */
+    }
+
+    .custom-form-container {
+  width: 600px; /* Set the desired width directly */
+  margin: auto; /* Center the form horizontally */
+  background-color: #ffffff; /* White background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight elevation */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-control {
+      width: 100%;
+    }
+
+    .btn-primary {
+      background-color: #28a745; /* GitHub green color */
+      border-color: #28a745;
+    }
+
+    .btn-primary:hover {
+      background-color: #218838; /* Darker green on hover */
+      border-color: #218838;
+    }
+
+    .form-text {
+      color: #6a737d; /* GitHub gray color for helper text */
+    }

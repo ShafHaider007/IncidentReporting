@@ -1,0 +1,20 @@
+<!-- incident_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Incident List{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-primary mb-4">Incident List</h1>
+        
+        <ul class="list-group">
+            {% for user, report_count in user_reports %}
+                <li class="list-group-item">
+                    <a href="{% url 'user_report_history' user_name=user %}">
+                        {{ user }} ({{ report_count }} reports)
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

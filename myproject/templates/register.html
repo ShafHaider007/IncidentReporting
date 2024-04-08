@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.7/dist/css/splide.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.7/dist/js/splide.min.js"></script>
+    <title>Register</title>
+    <style>
+      :root {
+        --primary: #00b98e;
+        --secondary: #ff6922;
+        --light: #effdf5;
+        --dark: #0e2e50;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to right, var(--primary), var(--dark));
+        color: var(--light);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .custom-form-container {
+        width: 100%;
+        max-width: 400px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 1s ease-in-out;
+        text-align: center;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--secondary);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        color: var(--dark);
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: var(--dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+        border: 1px solid var(--dark);
+        border-radius: 4px;
+        font-size: 16px;
+        color: var(--dark);
+      }
+
+      .btn-primary {
+        background-color: var(--dark);
+        color: var(--light);
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .splide__arrow {
+        color: var(--secondary);
+        font-size: 24px;
+        background-color: var(--light);
+        border: 1px solid var(--secondary);
+        border-radius: 50%;
+        padding: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 20px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        opacity: 0.5;
+      }
+
+      .splide__arrow:hover {
+        background-color: var(--secondary);
+        color: var(--light);
+      }
+
+      .splide__arrow--prev::before,
+      .splide__arrow--next::before {
+        font-family: "FontAwesome";
+      }
+
+      .splide__arrow--prev::before {
+        content: "\f053"; /* FontAwesome icon for chevron-left */
+      }
+
+      .splide__arrow--next::before {
+        content: "\f054"; /* FontAwesome icon for chevron-right */
+      }
+
+      .splide__arrow--prev {
+        margin-right: 10px;
+      }
+
+      .splide__arrow--next {
+        margin-left: 10px;
+      }
+
+      .splide__arrow:focus {
+        outline: none;
+      }
+
+      .splide__arrow:active {
+        background-color: var(--secondary);
+        color: var(--light);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="custom-form-container">
+      <div class="form-header">
+        <h2>Become part of the Society</h2>
+      </div>
+      <form id="registerForm" method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div id="splide" class="splide">
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class="splide__slide">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    class="form-control"
+                    placeholder="Create a username"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="splide__slide">
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input
+                    type="text"
+                    id="fname"
+                    name="fname"
+                    class="form-control"
+                    placeholder="Enter your first name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="splide__slide">
+                <div class="form-group">
+                  <label for="lname">Last Name</label>
+                  <input
+                    type="text"
+                    id="lname"
+                    name="lname"
+                    class="form-control"
+                    placeholder="Enter your last name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="splide__slide">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="splide__slide">
+                <div class="form-group">
+                  <label for="pass1">Password</label>
+                  <input
+                    type="password"
+                    id="pass1"
+                    name="pass1"
+                    class="form-control"
+                    placeholder="Enter Password"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="splide__slide">
+                <div class="form-group">
+                  <label for="pass2">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="pass2"
+                    name="pass2"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="splide__slide">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label for="role">Select Role</label>
+                    <select class="form-control" id="role" name="role">
+                      <option value="ADMIN">Admin</option>
+                      <option value="RESIDENTS">Residents</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="splide__arrows">
+            <button
+              type="button"
+              class="splide__arrow splide__arrow--prev"
+            ></button>
+            <button
+              type="button"
+              class="splide__arrow splide__arrow--next"
+            ></button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Register
+        </button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.7/dist/js/splide.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const splide = new Splide("#splide", {
+          type: "fade",
+          heightRatio: 0.5,
+          pagination: false,
+          arrows: true,
+        }).mount();
+
+        const form = document.getElementById("registerForm");
+        const prevButton = document.querySelector(".splide__arrow--prev");
+        const nextButton = document.querySelector(".splide__arrow--next");
+
+        prevButton.addEventListener("click", () => splide.go("<"));
+        nextButton.addEventListener("click", () => splide.go(">"));
+
+        form.addEventListener("submit", function (event) {
+          // Check if the current slide is the last one
+          const isLastSlide = splide.index >= splide.length - 1;
+
+          if (!isLastSlide) {
+            event.preventDefault();
+            alert("Please fill out all fields before submitting.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!-- user_report_history.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ user_name }}'s Report History{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-primary mb-4">{{ user_name }}'s Report History</h1>
+        
+        <ul class="list-group">
+            {% for incident in incidents %}
+                <li class="list-group-item">
+                    <a href="{% url 'incident_details' report_id=incident.report_id %}">
+                        Report {{ incident.report_id }} - {{ incident.date }} - {{ incident.status }}
+                    </a>
+                    {% if incident.status != 'Solved' %}
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <button type="submit" name="mark_as_solved" value="{{ incident.report_id }}">Mark as Solved</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

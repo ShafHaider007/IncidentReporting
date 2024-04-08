@@ -1,0 +1,574 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Home
+{% endblock title %}
+  
+{% block body %}
+  <script>
+  // Function to show the login success alert using Toastr
+  function showLoginSuccessAlert() {
+    toastr.success('You have successfully logged in.');
+  }
+
+  // Check if the user is authenticated and show the alert
+  {% if user.is_authenticated %}
+    document.addEventListener('DOMContentLoaded', function () {
+      showLoginSuccessAlert();
+    });
+  {% endif %}
+</script>
+
+
+
+  
+
+    
+   <!-- Header Start -->
+      <div class="container-fluid header bg-light p-0">
+        <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+          <div class="col-md-6 p-5 mt-lg-5">
+            <h1 class="display-4 fw-bold animated fadeIn mb-4">
+              Discover Your <span class="text-success">Dream Home</span> for a
+              Happy Family
+            </h1>
+            <p class="animated fadeIn mb-4 pb-2">
+              Welcome to our exclusive collection of homes designed to meet your
+              family's unique needs. Find comfort, style, and happiness in every
+              corner.
+            </p>
+            <a href="#" class="btn btn-success py-3 px-5 me-3 animated fadeIn">
+              Explore Now
+            </a>
+          </div>
+          <div class="col-md-6 animated fadeIn">
+            <div class="owl-carousel header-carousel">
+              <div class="owl-carousel-item">
+                <img
+                  class="img-fluid"
+                  src="/static/img/frontpage image 1.jpg"
+                  alt="Dream Home 1"
+                />
+              </div>
+              <div class="owl-carousel-item">
+                <img
+                  class="img-fluid"
+                  src="/static/img/frontpage image 2.jpeg"
+                  alt="Dream Home 2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Header End -->
+      <!-- Category Start -->
+      <div class="container-xxl py-5">
+        <div class="container">
+          <div
+            class="text-center mx-auto mb-5 wow fadeInUp"
+            data-wow-delay="0.1s"
+            style="max-width: 600px"
+          >
+            <h1 class="mb-3 display-4 fw-bold">Explore Our Property Types</h1>
+            <p class="lead">
+              Find the perfect property that suits your lifestyle and needs.
+              Discover a diverse range of homes designed for comfort and style.
+            </p>
+          </div>
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- Apartment -->
+            <div class="col wow fadeInUp" data-wow-delay="0.1s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-apartment.png"
+                      alt="Apartment Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Apartment</h6>
+                  <span class="text-muted">90 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Villa -->
+            <div class="col wow fadeInUp" data-wow-delay="0.3s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-villa.png"
+                      alt="Villa Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Villa</h6>
+                  <span class="text-muted">65 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Home -->
+            <div class="col wow fadeInUp" data-wow-delay="0.5s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-house.png"
+                      alt="Home Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Home</h6>
+                  <span class="text-muted">58 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Office -->
+            <div class="col wow fadeInUp" data-wow-delay="0.7s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-housing.png"
+                      alt="Office Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Office</h6>
+                  <span class="text-muted">21 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Building -->
+            <div class="col wow fadeInUp" data-wow-delay="0.1s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-building.png"
+                      alt="Building Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Building</h6>
+                  <span class="text-muted">42 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Townhouse -->
+            <div class="col wow fadeInUp" data-wow-delay="0.3s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-neighborhood.png"
+                      alt="Townhouse Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Townhouse</h6>
+                  <span class="text-muted">57 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Shop -->
+            <div class="col wow fadeInUp" data-wow-delay="0.5s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-condominium.png"
+                      alt="Shop Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Shop</h6>
+                  <span class="text-muted">69 Properties</span>
+                </div>
+              </a>
+            </div>
+            <!-- Garage -->
+            <div class="col wow fadeInUp" data-wow-delay="0.7s">
+              <a
+                class="cat-item d-block bg-light text-center rounded p-3"
+                href="#"
+              >
+                <div class="rounded p-4">
+                  <div class="icon mb-3">
+                    <img
+                      class="img-fluid"
+                      src="/static/img/icon-luxury.png"
+                      alt="Garage Icon"
+                    />
+                  </div>
+                  <h6 class="h5">Garage</h6>
+                  <span class="text-muted">43 Properties</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category End -->
+
+      <!-- About Start -->
+      <div class="container-xxl py-5">
+        <div class="container">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+              <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                <img
+                  class="img-fluid w-100"
+                  src="/static/img/about.jpg"
+                  alt="Smart Society Islamabad"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+              <h1 class="mb-4">Smart Society Islamabad</h1>
+              <p class="mb-4">
+                Smart Society Islamabad began in the scenic Islamabad Capital
+                Territory back in 2018. The Smart Society project is meant to
+                complement the iconic botanical gardens and the Capital
+                Development Authority’s farming project.
+              </p>
+              <p>
+                <i class="fa fa-check text-primary me-3"></i>Since its
+                inception, the Smart Society project has become an important
+                statement of the finest lifestyle and has gained a reputation of
+                timeless quality.
+              </p>
+              <p>
+                <i class="fa fa-check text-primary me-3"></i>The total planned
+                area for the project is estimated at 15,000 kanals. Major
+                infrastructure work has already been completed on more than
+                6,000 kanals of land that include houses and commercial
+                buildings.
+              </p>
+              <a class="btn btn-primary py-3 px-5 mt-3" href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- About End -->
+
+      <!-- Amenities -->
+      <div class="container-xxl py-5">
+        <div class="container">
+          <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+              <div
+                class="text-start mx-auto mb-5 wow slideInLeft"
+                data-wow-delay="0.1s"
+              >
+                <h1 class="mb-5">AMENITIES IN SMART SOCIETY</h1>
+                <p>EXPLORE AMENITIES IN SMART SOCIETY</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+              <div class="row g-4">
+                <!-- Parks Amenity -->
+                <div
+                  class="col-lg-4 col-md-6 wow fadeInUp"
+                  data-wow-delay="0.1s"
+                >
+                  <div class="amenity-item rounded overflow-hidden">
+                    <img
+                      class="img-fluid mb-4"
+                      src="/static/img/park.jpg"
+                      alt="Parks Image"
+                    />
+                    <h4 class="mb-3">PARKS <i class="fas fa-tree"></i></h4>
+                    <p>
+                      To nurture a healthy and happy community, Smart Society
+                      Islamabad has developed numerous parks across all our
+                      blocks that provide a good range of activities for people
+                      of all ages.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Security Amenity -->
+                <div
+                  class="col-lg-4 col-md-6 wow fadeInUp"
+                  data-wow-delay="0.3s"
+                >
+                  <div class="amenity-item rounded overflow-hidden">
+                    <img
+                      class="img-fluid mb-4"
+                      src="/static/img/security.jpg"
+                      alt="Security Image"
+                    />
+                    <h4 class="mb-3">
+                      SECURITY <i class="fas fa-shield-alt"></i>
+                    </h4>
+                    <p>
+                      Smart Society Islamabad prides itself on having 24/7
+                      security. Our highly trained security personnel are well
+                      equipped and stationed all over the society, performing
+                      regular patrols throughout the beautiful smart city
+                      Islamabad.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Dancing Fountain Amenity -->
+                <div
+                  class="col-lg-4 col-md-6 wow fadeInUp"
+                  data-wow-delay="0.5s"
+                >
+                  <div class="amenity-item rounded overflow-hidden">
+                    <img
+                      class="img-fluid mb-4"
+                      src="/static/img/dancing fountain.jpg"
+                      alt="Dancing Fountain Image"
+                    />
+                    <h4 class="mb-3">
+                      DANCING FOUNTAIN <i class="fas fa-water"></i>
+                    </h4>
+                    <p>
+                      The Dancing Fountains at the Downtown Islamabad Lake are
+                      the biggest attraction of our beautiful Capital City. Be
+                      mesmerized by the soothing movements of the water
+                      fountains at the most in-demand commercial area of
+                      Islamabad.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Food Court Amenity -->
+                <div
+                  class="col-lg-4 col-md-6 wow fadeInUp"
+                  data-wow-delay="0.1s"
+                >
+                  <div class="amenity-item rounded overflow-hidden">
+                    <img
+                      class="img-fluid mb-4"
+                      src="/static/img/food court.jpeg"
+                      alt="Food Court Image"
+                    />
+                    <h4 class="mb-3">
+                      FOOD COURT <i class="fas fa-utensils"></i>
+                    </h4>
+                    <p>
+                      In the beautiful backdrop of lush green hills sits Smart
+                      Society Islamabad’s very own Food Valley Food Court. The
+                      aptly named Food Valley features brands that offer
+                      delicious cuisines from both local and international
+                      cuisines. Enjoy an amazing meal with friends and family
+                      while you enjoy the view of the beautiful valley right
+                      below you.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Underground Electricity Amenity -->
+                <div
+                  class="col-lg-4 col-md-6 wow fadeInUp"
+                  data-wow-delay="0.3s"
+                >
+                  <div class="amenity-item rounded overflow-hidden">
+                    <img
+                      class="img-fluid mb-4"
+                      src="/static/img/underground electricity.jpg"
+                      alt="Underground Electricity Image"
+                    />
+                    <h4 class="mb-3">
+                      UNDERGROUND ELECTRICITY <i class="fas fa-bolt"></i>
+                    </h4>
+                    <p>
+                      The underground power station of Smart Society Islamabad
+                      is one of the most important projects of the city. The
+                      power station is located in the heart of the city.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Commercial Hub Amenity -->
+                <div
+                  class="col-lg-4 col-md-6 wow fadeInUp"
+                  data-wow-delay="0.5s"
+                >
+                  <div class="amenity-item rounded overflow-hidden">
+                    <img
+                      class="img-fluid mb-4"
+                      src="/static/img/commercial hub.jpg"
+                      alt="Commercial Hub Image"
+                    />
+                    <h4 class="mb-3">
+                      COMMERCIAL HUB <i class="fas fa-building"></i>
+                    </h4>
+                    <p>
+                      Smart Society Islamabad is undoubtedly the next big
+                      commercial hub of the capital city. Boasting amazing
+                      commercial areas like Downtown Commercial and The Walk,
+                      Smart Society has also created a business district and a
+                      shopping mall. The Downtown Commercial also features a
+                      lake that will serve as the biggest attraction for
+                      residents of the twin cities.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 text-center wow fadeInUp"
+                  data-wow-delay="0.1s"
+                >
+                  <a class="btn btn-primary py-3 px-5" href=""
+                    >Browse More Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Amenities List End -->
+
+      <!-- Call to Action Start -->
+      <div class="container-xxl py-5">
+        <div class="container">
+          <div class="bg-light rounded p-3">
+            <div
+              class="bg-white rounded p-4"
+              style="border: 1px dashed rgba(0, 185, 142, 0.3)"
+            >
+              <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                  <img
+                    class="img-fluid rounded w-100"
+                    src="/static/img/call-to-action.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                  <div class="mb-4">
+                    <h1 class="mb-3">Contact With Our Certified Agent</h1>
+                    <p>
+                      Explore endless possibilities with our certified agents
+                      who are ready to guide you through your dream home journey
+                    </p>
+                  </div>
+                  <a href="" class="btn btn-dark py-3 px-4"
+                    ><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Call to Action End -->
+
+      <!-- Team Start -->
+      <div class="container-xxl py-5">
+        <div class="container">
+          <div
+            class="text-center mx-auto mb-5 wow fadeInUp"
+            data-wow-delay="0.1s"
+            style="max-width: 800px"
+          >
+            <h1 class="mb-3">Meet our team</h1>
+            <p class="lead">
+              Discover the talented individuals behind our success.
+            </p>
+          </div>
+          <div class="row g-4 justify-content-center">
+            <!-- Team Member 1 -->
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div
+                class="team-item rounded overflow-hidden"
+                style="height: 400px; position: relative"
+              >
+                <img
+                  class="img-fluid mx-auto d-block"
+                  src="/static/img/kinza.jpg"
+                  alt=""
+                  style="max-width: 100%; max-height: 100%"
+                />
+                <div
+                  class="text-center p-4 mt-3 position-absolute start-0 bottom-0 end-0"
+                  style="background: rgba(255, 255, 255, 0.8)"
+                >
+                  <h5 class="fw-bold mb-0">Kinza Naeem</h5>
+                  <small>Project Manager</small>
+                  <div class="d-flex justify-content-center mt-2">
+                    <a class="btn btn-square mx-1" href=""
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                    <a class="btn btn-square mx-1" href=""
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+                    <a class="btn btn-square mx-1" href=""
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+              <div
+                class="team-item rounded overflow-hidden"
+                style="height: 400px; position: relative"
+              >
+                <img
+                  class="img-fluid mx-auto d-block"
+                  src="/static/img/shaf.jpg"
+                  alt=""
+                  style="max-width: 100%; max-height: 100%"
+                />
+                <div
+                  class="text-center p-4 mt-3 position-absolute start-0 bottom-0 end-0"
+                  style="background: rgba(255, 255, 255, 0.8)"
+                >
+                  <h5 class="fw-bold mb-0">Shaf Haider</h5>
+                  <small>Senior Architect</small>
+                  <div class="d-flex justify-content-center mt-2">
+                    <a class="btn btn-square mx-1" href=""
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                    <a class="btn btn-square mx-1" href=""
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+                    <a class="btn btn-square mx-1" href=""
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Team End -->
+      
+{% endblock body %}
+  
+

@@ -1,0 +1,107 @@
+<!-- status_page.html -->
+
+{% extends "base.html" %} {% block title %} Report Status {% endblock title %}
+{% block body %}
+<style>
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .status-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .status-form {
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .status-result {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .status-value {
+    font-weight: bold;
+    color: #155724;
+  }
+</style>
+
+<div class="status-container">
+  <h2>Check Status</h2>
+
+  <p>Enter your name and phone number to check the status of your report:</p>
+
+  <form class="status-form" method="post" action="{% url 'check_status' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Check Status</button>
+  </form>
+
+  {% if status %}
+  <div class="status-result">
+    <p>Status:</p>
+    <span class="status-value">{{ status }}</span>
+  </div>
+  {% else %}
+  <p>No status found.</p>
+
+  {% endif %}
+</div>
+
+{% endblock body %}

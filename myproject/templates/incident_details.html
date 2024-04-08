@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Incident Details{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="incident-report bg-light p-4 rounded shadow">
+            <h1 class="text-primary mb-4">Name of the Resident: {{ incident.name }}</h1>
+
+            <div class="incident-info">
+                <p><strong>Description:</strong> {{ incident.description }}</p>
+                <p><strong>Status:</strong> {{ incident.status }}</p>
+                <p><strong>Category:</strong> {{ incident.category }}</p>
+            </div>
+
+            <button class="btn btn-primary mt-3" id="downloadPdf">Download PDF</button>
+            <a class="btn btn-secondary mt-3" href="{% url 'checkreport' %}">&larr; Back to Incident Reports</a>
+        </div>
+    </div>
+
+    <!-- Include html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            var element = document.querySelector('.incident-report');
+            html2pdf(element);
+        });
+    </script>
+{% endblock %}

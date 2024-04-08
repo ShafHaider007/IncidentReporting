@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+
+{% block title %}
+Report
+{% endblock title %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6WbE+EeNmDwPKtiEQI5KGKfY+GnZIXLx"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha384-rZpZEAgXL3Hw8R4KDF3ouJYwW5v6MHLIBqAgb4L9gzlR+9k3Z9X1TE4IwQU3L4z6"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-easybutton/dist/easy-button.js"></script>
+    <style>
+      #map {
+        width: 100%;
+        height: 700px;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .custom-popup {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        max-width: 300px; /* Adjust as needed */
+      }
+
+      /* Animation for the map and popup */
+      .leaflet-popup {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      }
+
+      .leaflet-popup.leaflet-popup-open {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Styling for the form elements */
+      form {
+        margin-top: 10px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: #333; /* Text color */
+      }
+
+      select {
+        background-color: #f8f9fa; /* Dropdown background color */
+      }
+
+      /* Button styling */
+      #repbut {
+        margin-top: 10px;
+        display: inline-block;
+        padding: 6px 10px;
+        background-color: #007bff; /* Button background color */
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      #repbut:hover {
+        background-color: #0056b3; /* Button hover background color */
+      }
+
+      /* Responsive styling */
+      @media (max-width: 767px) {
+        #map {
+          height: 300px;
+        }
+      }
+      #locate-btn {
+        position: absolute;
+        top: 30%;
+        left: 6%;
+
+        z-index: 1000; /* Set a higher z-index to ensure it's above Leaflet controls */
+        padding: 8px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      #locate-btn:hover {
+        background-color: #0056b3;
+      }
+
+      @media (max-width: 767px) {
+        #locate-btn {
+          top: 30%;
+          left: 6%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% if messages %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        toastr.success("Incident reported successfully, {{name}}"); // Display the success message using toastr
+      });
+    </script>
+    {% endif %}
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-8">
+          <div id="map" class="mb-3"></div>
+          <button id="locate-btn" class="btn btn-primary">
+            <i class="fas fa-location-arrow mr-2"></i>Locate Me
+          </button>
+        </div>
+        <div class="col-md-4">
+          <div class="custom-popup">
+            <b>Report Incident</b><br />
+
+            <form id="incidentForm" method="post" action="{% url 'report' %}">
+              {% csrf_token %}
+              <!-- ... existing form fields ... -->
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                  placeholder="Your Phone Number"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  rows="4"
+                  placeholder="Describe the incident..."
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="category">Category:</label>
+                <select
+                  class="form-control"
+                  id="category"
+                  name="category"
+                  required
+                >
+                  <option value="accident">Accident</option>
+                  <option value="fire">Fire</option>
+                  <option value="crime">Crime</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="comments">Additional Comments:</label>
+                <textarea
+                  class="form-control"
+                  id="comments"
+                  name="comments"
+                  rows="4"
+                  placeholder="Any additional comments..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="latitude"
+                  name="latitude"
+                  placeholder="Latitude"
+                  readonly
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="longitude"
+                  name="longitude"
+                  placeholder="Longitude"
+                  readonly
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary mt-2">
+                <i class="fas fa-check mr-2 mt-2"></i>Submit
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger mt-2"
+                onclick="removeMarker()"
+              >
+                <i class="fas fa-trash-alt mr-2 mt-2"></i>Remove Marker
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var map = L.map("map").setView(
+        [33.645424412975906, 72.98959350533552],
+        15
+      );
+      L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        {
+          maxZoom: 27,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }
+      ).addTo(map);
+
+      let currentMarker;
+
+      map.on("click", (event) => {
+        let lat = event.latlng.lat;
+        let lng = event.latlng.lng;
+        document.getElementById("latitude").value = lat;
+        document.getElementById("longitude").value = lng;
+
+        let popupContent = `Latitude: ${lat.toFixed(
+          6
+        )}<br>Longitude: ${lng.toFixed(6)}`;
+
+        if (currentMarker) {
+          map.removeLayer(currentMarker);
+        }
+
+        currentMarker = L.marker([lat, lng]).addTo(map);
+        currentMarker
+          .bindPopup(popupContent, { className: "custom-popup" })
+          .openPopup();
+      });
+
+      function removeMarker() {
+        if (currentMarker) {
+          map.removeLayer(currentMarker);
+        }
+        map.closePopup();
+      }
+
+      document
+        .getElementById("locate-btn")
+        .addEventListener("click", function () {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              function (position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                if (currentMarker) {
+                  map.removeLayer(currentMarker);
+                }
+
+                currentMarker = L.marker([lat, lng]).addTo(map);
+                currentMarker
+                  .bindPopup(
+                    "<b>Your Location</b><br>Lat: " + lat + "<br>Lng: " + lng
+                  )
+                  .openPopup();
+
+                map.panTo(new L.LatLng(lat, lng));
+              },
+              function (error) {
+                console.error("Error getting current location:", error.message);
+                alert("Error getting current location. Please try again.");
+              }
+            );
+          } else {
+            alert("Geolocation is not supported by your browser.");
+          }
+        });
+    </script>
+  </body>
+</html>
+{% endblock body %}
